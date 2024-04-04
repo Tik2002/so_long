@@ -3,54 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: senate <senate@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:34:18 by senate            #+#    #+#             */
-/*   Updated: 2024/03/29 20:47:40 by senate           ###   ########.fr       */
+/*   Updated: 2024/04/04 19:37:21 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-char **creat_map(int wid, int len, t_point pers)
+int	err(void)
 {
-	char **map;
-	int i = 0;
-	int j;
-
-	map = (char **)malloc(wid * sizeof(char *));
-	while (i < wid)
-	{
-		j = 0;
-		map[i] = (char *)malloc(len);
-		while (j < len)
-		{
-			if (i == 0 || i == wid - 1 || j == 0 || j == len - 1)
-				map[i][j++] = '1';
-			else
-				map[i][j++] = '0';
-		}
-		i++;
-	}
-	map[pers.y][pres.x] = 'P';
-	return (map);
+	ft_putstr_fd("Error\n", 2);
+	return (1);
 }
 
-int main(void)
+int main(int ac, char **av)
 {
-	int i = 0;
-	int len = 20;
-	int wid = 10;
-	char **map;
-	t_point pers;
-
-	pers = {3, 3};
-
-	map = creat_map(wid, len);
-
-	while (i < wid)
-		printf("%s\n", map[i++]);
-	free (map);
-	system ("leaks");
-	return 0;
+	if (ac != 2)
+		return (1);
+	if (!check_map(av[1]))
+		return (err());
+	return (0);
 }
+
+	// void	*mlx_window;
+	// void	*mlx_connection;
+	// t_map	my_map;
+
+	// my_map.x = 800;
+	// my_map.y = 800;
+	// mlx_connection = mlx_init();
+	// if (!mlx_connection)
+	// 	return (1);
+	// mlx_window = mlx_new_window(mlx_connection, my_map.x, my_map.y, "My window");
+	// mlx_loop(mlx_connection);
+	// mlx_destroy_window(mlx_connection, mlx_window);
+	// free (mlx_connection);

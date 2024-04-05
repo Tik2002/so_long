@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:34:18 by senate            #+#    #+#             */
-/*   Updated: 2024/04/04 19:37:21 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:32:32 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int main(int ac, char **av)
 		return (1);
 	if (!check_map(av[1]))
 		return (err());
+	system("leaks so_long");
 	return (0);
 }
 

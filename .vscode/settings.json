@@ -2,6 +2,7 @@
 	"files.associations": {
 		"so_long.h": "c",
 		"stdlib.h": "c",
-		"ft_printf.h": "c"
+		"ft_printf.h": "c",
+		"random": "c"
 	}
 }

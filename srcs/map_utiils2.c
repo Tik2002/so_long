@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: senate <senate@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 18:14:22 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/05 21:50:06 by senate           ###   ########.fr       */
+/*   Updated: 2024/04/06 15:35:41 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_destroy(char **map)
 {
-	// int	i;
+	char	**tmp;
 
-	// i = 0;
-	// while (map[i])
-	// {
-	// 	free(map[i]);
-	// 	i++;
-	// }
+	tmp = map;
+	while (*tmp)
+	{
+		free(*tmp);
+		tmp++;
+	}
 	free(map);
 }

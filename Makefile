@@ -10,12 +10,12 @@ LIBFT = $(LIBFTPATH)*.o
 
 CC = cc
 CFLAGS = -Wall -Wextra  $(foreach H,$(INCPATH),-I$(H))
-# MLXFLAGS = -Lmlx -lmlx -framework OpenGl -framework Appkit -lm
+MLXFLAGS = -Lmlx -lmlx -framework OpenGl -framework Appkit -lm
 # -Werror
 all : $(NAME)
 $(NAME) : $(LIBFT) $(PRINTF) $(OBJS)
-	$(CC) $(LIBFT) $(PRINTF) $(OBJS) -o $(NAME)
-#$(MLXFLAGS)
+	$(CC) $(MLXFLAGS) $(LIBFT) $(PRINTF) $(OBJS) -o $(NAME)
+#
 $(LIBFT) :
 	make -C $(LIBFTPATH) all
 

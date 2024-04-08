@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: senate <senate@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:26:00 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/06 00:37:35 by senate           ###   ########.fr       */
+/*   Updated: 2024/04/06 15:40:39 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	_check_size(char **map)
 
 static int	_check_type(char *av)
 {
-	int		i;
+	int	i;
 
 	i = ft_strlen(av);
 	i -= 4;
@@ -45,16 +45,18 @@ static int	_count(char *av)
 
 	fd = open(av, O_RDONLY);
 	count = 0;
-	while ((tmp = get_next_line(fd)))
+	tmp = get_next_line(fd);
+	while (tmp)
 	{
 		free(tmp);
 		count++;
+		tmp = get_next_line(fd);
 	}
 	close(fd);
 	return (count);
 }
 
-static char **_copy_map(char *av, int count)
+static char	**_copy_map(char *av, int count)
 {
 	int		fd;
 	int		i;
@@ -75,7 +77,7 @@ static char **_copy_map(char *av, int count)
 	return (map);
 }
 
-int check_map(char *av)
+int	check_map(char *av)
 {
 	int		count;
 	char	**map;
@@ -84,7 +86,13 @@ int check_map(char *av)
 		return (0);
 	count = _count(av);
 	map = _copy_map(av, count);
-	return (_check_map_design(map) && _check_size(map)
-		&& _check_member(map, 'P') && _check_member(map, 'C')
-		&& _check_member(map, 'E') && _check_road(map, count));
+	if (_check_map_design(map) && _check_size(map) && _check_member(map, 'P')
+		&& _check_member(map, 'C') && _check_member(map, 'E')
+		&& _check_road(map, count))
+	{
+		ft_destroy(map);
+		return (1);
+	}
+	ft_destroy(map);
+	return (0);
 }

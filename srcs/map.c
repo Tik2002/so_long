@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:26:00 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/06 15:40:39 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/08 20:54:32 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	_count(char *av)
 	return (count);
 }
 
-static char	**_copy_map(char *av, int count)
+static char	**_creat_map(char *av, int count)
 {
 	int		fd;
 	int		i;
@@ -77,7 +77,7 @@ static char	**_copy_map(char *av, int count)
 	return (map);
 }
 
-int	check_map(char *av)
+char	**check_map(char *av)
 {
 	int		count;
 	char	**map;
@@ -85,14 +85,11 @@ int	check_map(char *av)
 	if (!_check_type(av))
 		return (0);
 	count = _count(av);
-	map = _copy_map(av, count);
+	map = _creat_map(av, count);
 	if (_check_map_design(map) && _check_size(map) && _check_member(map, 'P')
 		&& _check_member(map, 'C') && _check_member(map, 'E')
 		&& _check_road(map, count))
-	{
-		ft_destroy(map);
-		return (1);
-	}
+		return (map);
 	ft_destroy(map);
 	return (0);
 }

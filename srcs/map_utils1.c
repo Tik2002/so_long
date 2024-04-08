@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_utils.c                                  :+:      :+:    :+:   */
+/*   map_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 22:09:38 by senate            #+#    #+#             */
-/*   Updated: 2024/04/06 19:32:53 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/08 20:08:32 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,24 @@
 
 static int	_find(char **map, t_point size, t_point cur, char **visited)
 {
+	static int	count;
+	static int	flag;
+
+	if (!count && !flag)
+	{
+		count = ft_counter_check(map);
+		flag = 0;
+	}
 	if (visited[cur.y][cur.x] == 1)
 		return (0);
 	visited[cur.y][cur.x] = 1;
 	if (cur.y <= 0 || cur.y >= size.y || cur.x <= 0 || cur.x >= size.x
 		|| map[cur.y][cur.x] == '1')
 		return (0);
-	else if (map[cur.y][cur.x] == 'E')
-		return (1);
+	else if (map[cur.y][cur.x] == 'E' || map[cur.y][cur.x] == 'C')
+		flag++;
+	if (flag == count)
+		return (flag);
 	return (_find(map, size, (t_point){cur.x + 1, cur.y}, visited) || _find(map,
 			size, (t_point){cur.x, cur.y + 1}, visited) || _find(map, size,
 			(t_point){cur.x - 1, cur.y}, visited) || _find(map, size,

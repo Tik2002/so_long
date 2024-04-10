@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:26:00 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/08 20:54:32 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:31:04 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,21 @@ static char	**_creat_map(char *av, int count)
 	return (map);
 }
 
-char	**check_map(char *av)
+void	check_map(char *av, t_game *game)
 {
 	int		count;
-	char	**map;
 
 	if (!_check_type(av))
-		return (0);
+		return ;
 	count = _count(av);
-	map = _creat_map(av, count);
-	if (_check_map_design(map) && _check_size(map) && _check_member(map, 'P')
-		&& _check_member(map, 'C') && _check_member(map, 'E')
-		&& _check_road(map, count))
-		return (map);
-	ft_destroy(map);
-	return (0);
+	game->map = _creat_map(av, count);
+	if (_check_map_design(game->map) && _check_size(game->map) && _check_member(game->map, 'P')
+		&& _check_member(game->map, 'C') && _check_member(game->map, 'E')
+		&& _check_road(game, count))
+	{
+		game->exit_flag = 3;
+		return ;
+	}
+	ft_destroy(game->map);
+	return ;
 }

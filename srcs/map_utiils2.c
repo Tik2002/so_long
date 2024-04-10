@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 18:14:22 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/08 20:56:19 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:55:29 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,31 @@ void	ft_destroy(char **map)
 	free(map);
 }
 
-int	ft_counter_check(char **map)
+int	ft_counter_check(t_game *game)
 {
 	int	i;
 	int	j;
-	int	coin_count;
 	int	exit_count;
 
 	i = 0;
 	exit_count = 0;
-	coin_count = 0;
-	while (map[i])
+	game->head_count = 0;
+	while (game->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (game->map[i][j])
 		{
-			if (map[i][j] == 'E')
-				++exit_count;
-			else if (map[i][j] == 'C')
-				++coin_count;
+			if (game->map[i][j] == 'E')
+				exit_count++;
+			else if (game->map[i][j] == 'C')
+				game->head_count++;
 			++j;
 		}
 		++i;
 	}
 	if (exit_count > 1)
 		return (0);
-	return (exit_count + coin_count);
+	return (exit_count + game->head_count);
 }
 
 t_point	*map_size(char **map)

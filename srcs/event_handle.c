@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:56:25 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/09 20:43:05 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:08:33 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,39 @@ static void	game_event(int key, t_game *game)
 {
 	if (key == KEY_W || key == KEY_UP)
 	{
-		game->y_player -= 1;
-		player_w(game);
+		game->player_cord->y -= 1;
+		go_up(game);
 	}
 	else if (key == KEY_S || key == KEY_DOWN)
 	{
-		game->y_player += 1;
-		player_s(game);
+		game->player_cord->y += 1;
+		go_down(game);
 	}
 	else if (key == KEY_D || key == KEY_RIGHT)
 	{
-		game->x_player += 1;
-		player_d(game);
+		game->player_cord->x += 1;
+		go_right(game);
 	}
 	else if (key == KEY_A || key == KEY_LEFT)
 	{
-		game->x_player -= 1;
-		player_a(game);
+		game->player_cord->x -= 1;
+		go_left(game);
 	}
 }
 
 static int	key_event(int key, t_game *game)
 {
-	if (keycode == KEY_ESC || keycode == KEY_Q)
+	if (key == KEY_ESC || key == KEY_Q)
 		exit_game(game);
 	else if (!game->endgame)
 	{
-		game_events(keycode, game);
-		ft_putnbr_fd("Moves: ", 1);
+		game_event(key, game);
+		ft_putstr_fd("Moves: ", 1);
 		ft_putnbr_fd(game->moves, 1);
-		ft_putnbr_fd("\n", 1);
+		ft_putstr_fd("\n", 1);
 	}
-	else if (game->map[game->y_player][game->x_player] == 'E'
-			&& game->n_colect == 0)
+	else if (game->map[game->player_cord->y][game->player_cord->x] == 'E'
+			&& game->head_count == 0)
 		exit_game(game);
 	return (0);
 }

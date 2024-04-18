@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 22:09:38 by senate            #+#    #+#             */
-/*   Updated: 2024/04/10 19:10:32 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:29:27 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	_find(t_game *game, t_point size, t_point cur)
 		return (0);
 	game->visited[cur.y][cur.x] = 1;
 	if (cur.y <= 0 || cur.y >= size.y || cur.x <= 0 || cur.x >= size.x
-		|| game->map[cur.y][cur.x] == '1')
+		|| game->map[cur.y][cur.x] == '1' || game->map[cur.y][cur.x] == 'G')
 		return (0);
 	else if (game->map[cur.y][cur.x] == 'E' || game->map[cur.y][cur.x] == 'C')
 		flag++;
@@ -79,8 +79,6 @@ int	_check_road(t_game *game, int count)
 			break ;
 		begin.y++;
 	}
-	printf("x = %d\ny = %d\n", begin.x, begin.y);
-	printf("x = %d\ny = %d\n", size.x, size.y);
 	return (_find_way(game, size, begin));
 }
 
@@ -114,7 +112,6 @@ int	_check_map_design(char **map)
 	while (map[i])
 	{
 		j = -1;
-		ft_printf("%s", map[i]);
 		len = ft_strlen(map[i]) - 1;
 		while (j++ < (int)len - 1)
 			if (((i && map[i][len]) && (map[i][0] != '1' || map[i][len

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:56:25 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/10 19:08:33 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:28:53 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,11 @@ static int	key_event(int key, t_game *game)
 	if (key == KEY_ESC || key == KEY_Q)
 		exit_game(game);
 	else if (!game->endgame)
-	{
 		game_event(key, game);
-		ft_putstr_fd("Moves: ", 1);
-		ft_putnbr_fd(game->moves, 1);
-		ft_putstr_fd("\n", 1);
-	}
-	else if (game->map[game->player_cord->y][game->player_cord->x] == 'E'
-			&& game->head_count == 0)
+	else if (game->endgame)
 		exit_game(game);
 	return (0);
 }
-
 
 void	event_handle(t_game *game)
 {

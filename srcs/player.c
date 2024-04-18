@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:08:46 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/10 19:11:31 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:22:13 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	go_up(t_game *game)
 {
-	if (game->map[game->player_cord->y][game->player_cord->x] == 'E'
-			&& game->head_count == 0)
+	if (game->map[game->player_cord->y][game->player_cord->x] == 'G'
+		|| (game->map[game->player_cord->y][game->player_cord->x] == 'E'
+			&& game->head_count == 0))
 	{
 		mlx_clear_window(game->mlx, game->win);
 		game->map[game->player_cord->y + 1][game->player_cord->x] = '0';
@@ -40,8 +41,9 @@ void	go_up(t_game *game)
 
 void	go_down(t_game *game)
 {
-	if (game->map[game->player_cord->y][game->player_cord->x] == 'E'
-			&& game->head_count == 0)
+	if (game->map[game->player_cord->y][game->player_cord->x] == 'G'
+		|| (game->map[game->player_cord->y][game->player_cord->x] == 'E'
+			&& game->head_count == 0))
 	{
 		mlx_clear_window(game->mlx, game->win);
 		game->map[game->player_cord->y - 1][game->player_cord->x] = '0';
@@ -66,8 +68,9 @@ void	go_down(t_game *game)
 
 void	go_right(t_game *game)
 {
-	if (game->map[game->player_cord->y][game->player_cord->x] == 'E'
-			&& game->head_count == 0)
+	if (game->map[game->player_cord->y][game->player_cord->x] == 'G'
+		|| (game->map[game->player_cord->y][game->player_cord->x] == 'E'
+			&& game->head_count == 0))
 	{
 		mlx_clear_window(game->mlx, game->win);
 		game->map[game->player_cord->y][game->player_cord->x - 1] = '0';
@@ -92,8 +95,9 @@ void	go_right(t_game *game)
 
 void	go_left(t_game *game)
 {
-	if (game->map[game->player_cord->y][game->player_cord->x] == 'E'
-			&& game->head_count == 0)
+	if (game->map[game->player_cord->y][game->player_cord->x] == 'G'
+		|| (game->map[game->player_cord->y][game->player_cord->x] == 'E'
+			&& game->head_count == 0))
 	{
 		mlx_clear_window(game->mlx, game->win);
 		game->map[game->player_cord->y][game->player_cord->x + 1] = '0';

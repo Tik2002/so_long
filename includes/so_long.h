@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:32:31 by senate            #+#    #+#             */
-/*   Updated: 2024/04/10 20:29:43 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:31:32 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
 
-
-typedef struct	s_point
+typedef struct s_point
 {
 	int	x;
 	int	y;
 }	t_point;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
@@ -47,6 +46,7 @@ typedef struct	s_game
 	void	*img_floor;
 	void	*img_wall;
 	void	*img_player;
+	void	*img_enemy;
 	void	*img_head;
 	void	*img_exit;
 	int		exit_flag;
@@ -70,7 +70,7 @@ void	go_left(t_game *game);
 
 // game
 int		exit_game(t_game *game);
-void	draw_map(t_game *game);
+int		draw_map(t_game *game);
 void	event_handle(t_game *game);
 void	mlx_handle(t_game *game);
 void	event_handle(t_game *game);
@@ -79,12 +79,11 @@ void	event_handle(t_game *game);
 t_point	*map_size(char **map);
 t_point	*find_player(char **map);
 int		ft_counter_check(t_game *game);
-void	check_map(char *av, t_game *game);
+int		check_map(char *av, t_game *game);
 int		_check_member(char **map, char c);
 int		_check_map_design(char **map);
 void	ft_destroy(char **map);
 int		_check_road(t_game *game, int count);
-
 
 // GNEL
 char	*gnl_strchr(char *s, int c);

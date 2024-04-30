@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:34:18 by senate            #+#    #+#             */
-/*   Updated: 2024/04/18 19:56:46 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/28 19:29:28 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	mlx_handle(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return ;
-	game->map_width = game->map_cord->x * 64;
+	game->map_width = (game->map_cord->x - 1) * 64;
 	game->map_height = game->map_cord->y * 64;
 	game->win = mlx_new_window(game->mlx, game->map_width, game->map_height,
 			"Solo");

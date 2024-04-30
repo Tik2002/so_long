@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 18:14:22 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/10 18:55:29 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/30 20:06:10 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,26 @@ t_point	*find_player(char **map)
 		(player->y)++;
 	}
 	return (0);
+}
+
+int	_check_player(char **map, char c)
+{
+	int	i;
+	int	j;
+	int	flag;
+
+	flag = 0;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == c)
+				flag++;
+			j++;
+		}
+		i++;
+	}
+	return (flag == 1);
 }

@@ -6,7 +6,7 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:26:00 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/11 20:08:48 by tigpetro         ###   ########.fr       */
+/*   Updated: 2024/04/30 20:07:09 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	_check_size(char **map)
 	size_t	len;
 	int		i;
 
+	if (!map || !*map)
+		return (0);
 	i = 0;
 	len = ft_strlen(map[i]);
 	while (map[i])
@@ -63,6 +65,8 @@ static char	**_creat_map(char *av, int count)
 	char	**map;
 
 	fd = open(av, O_RDONLY);
+	if (fd < 0)
+		return (0);
 	i = 0;
 	map = (char **)malloc((count + 1) * sizeof(char *));
 	if (!map)
@@ -85,8 +89,10 @@ int	check_map(char *av, t_game *game)
 		return (0);
 	count = _count(av);
 	game->map = _creat_map(av, count);
+	if (game->map == 0)
+		return (0);
 	if (_check_map_design(game->map) && _check_size(game->map)
-		&& _check_member(game->map, 'P') && _check_member(game->map, 'C')
+		&& _check_player(game->map, 'P') && _check_member(game->map, 'C')
 		&& _check_member(game->map, 'E') && _check_road(game, count))
 	{
 		game->exit_flag = 2;

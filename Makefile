@@ -14,7 +14,7 @@ MLXFLAGS = -Lmlx -lmlx -framework OpenGl -framework Appkit -lm
 
 all : $(NAME)
 $(NAME) : $(LIBFT) $(PRINTF) $(OBJS)
-	$(CC) $(MLXFLAGS) $(LIBFT) $(PRINTF) $(OBJS) -o $(NAME)
+	$(CC) -fsanitize=address $(MLXFLAGS) $(LIBFT) $(PRINTF) $(OBJS) -o $(NAME)
 
 $(LIBFT) :
 	make -C $(LIBFTPATH) all
@@ -23,7 +23,7 @@ $(PRINTF) :
 	make -C $(PRINTF_PATH) all
 
 $(SRCSPATH)%.o : $(SRCSPATH)%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) -fsanitize=address $(CFLAGS) -c $< -o $@
 
 clean :
 	make -C $(PRINTF_PATH) clean

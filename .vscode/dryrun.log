@@ -1,0 +1,16 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/tigpetro/Desktop/42cursus/so_long'
+make -C ./libft/ all
+make -C ./printf/ all
+cc -fsanitize=address -Wall -Wextra -Werror -I./includes/ -I./printf/includes/ -I./printf/libft/ -c srcs/draw_map.c -o srcs/draw_map.o
+cc -fsanitize=address -Wall -Wextra -Werror -I./includes/ -I./printf/includes/ -I./printf/libft/ -c srcs/event_handle.c -o srcs/event_handle.o
+cc -fsanitize=address -Wall -Wextra -Werror -I./includes/ -I./printf/includes/ -I./printf/libft/ -c srcs/get_next_line.c -o srcs/get_next_line.o
+cc -fsanitize=address -Wall -Wextra -Werror -I./includes/ -I./printf/includes/ -I./printf/libft/ -c srcs/get_next_line_utils.c -o srcs/get_next_line_utils.o
+cc -fsanitize=address -Wall -Wextra -Werror -I./includes/ -I./printf/includes/ -I./printf/libft/ -c srcs/map.c -o srcs/map.o
+cc -fsanitize=address -Wall -Wextra -Werror -I./includes/ -I./printf/includes/ -I./printf/libft/ -c srcs/map_utiils2.c -o srcs/map_utiils2.o
+cc -fsanitize=address -Wall -Wextra -Werror -I./includes/ -I./printf/includes/ -I./printf/libft/ -c srcs/map_utils1.c -o srcs/map_utils1.o
+cc -fsanitize=address -Wall -Wextra -Werror -I./includes/ -I./printf/includes/ -I./printf/libft/ -c srcs/player.c -o srcs/player.o
+cc -fsanitize=address -Wall -Wextra -Werror -I./includes/ -I./printf/includes/ -I./printf/libft/ -c srcs/so_long.c -o srcs/so_long.o
+cc -fsanitize=address -Lmlx -lmlx -framework OpenGl -framework Appkit -lm ./libft/*.o ./printf//srcs/*.o ./srcs/draw_map.o ./srcs/event_handle.o ./srcs/get_next_line.o ./srcs/get_next_line_utils.o ./srcs/map.o ./srcs/map_utiils2.o ./srcs/map_utils1.o ./srcs/player.o ./srcs/so_long.o -o so_long
+make: Leaving directory `/Users/tigpetro/Desktop/42cursus/so_long'
+ 

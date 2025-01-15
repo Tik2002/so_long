@@ -6,11 +6,17 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 22:09:38 by senate            #+#    #+#             */
-/*   Updated: 2024/04/30 20:04:40 by tigpetro         ###   ########.fr       */
+/*   Updated: 2025/01/15 19:02:02 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
+
+static int	_check(t_game *game, t_point size, t_point cur)
+{
+	return (cur.y <= 0 || cur.y >= size.y || cur.x <= 0 || cur.x >= size.x
+		|| game->map[cur.y][cur.x] == '1' || game->map[cur.y][cur.x] == 'G');
+}
 
 static int	_find(t_game *game, t_point size, t_point cur)
 {
@@ -25,11 +31,14 @@ static int	_find(t_game *game, t_point size, t_point cur)
 	if (game->visited[cur.y][cur.x] == 1)
 		return (0);
 	game->visited[cur.y][cur.x] = 1;
-	if (cur.y <= 0 || cur.y >= size.y || cur.x <= 0 || cur.x >= size.x
-		|| game->map[cur.y][cur.x] == '1' || game->map[cur.y][cur.x] == 'G')
+	if (_check(game, size, cur))
 		return (0);
 	else if (game->map[cur.y][cur.x] == 'E' || game->map[cur.y][cur.x] == 'C')
+	{
+		if (game->map[cur.y][cur.x] == 'E')
+			return (0);
 		flag++;
+	}
 	if (flag == count)
 		return (flag);
 	return (_find(game, size, (t_point){cur.x + 1, cur.y}) || _find(game,
@@ -100,28 +109,4 @@ int	_check_member(char **map, char c)
 		i++;
 	}
 	return (0);
-}
-
-int	_check_map_design(char **map)
-{
-	int	i;
-	int	j;
-	int	len;
-
-	i = 0;
-	while (map[i])
-	{
-		j = -1;
-		len = ft_strlen(map[i]) - 1;
-		while (j++ < (int)len - 1)
-			if (((i && map[i][len]) && (map[i][0] != '1' || map[i][len
-				- 1] != '1' || (j && j < (int)len - 2
-				&& (map[i][j] != 'C' && map[i][j] != 'P'
-				&& map[i][j] != '0' && map[i][j] != '1'
-				&& map[i][j] != 'G' && map[i][j] != 'E'))))
-				|| ((!i || !map[i][len]) && map[i][j] != '1'))
-				return (0);
-		i++;
-	}
-	return (1);
 }

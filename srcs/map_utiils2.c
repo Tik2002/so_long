@@ -6,24 +6,11 @@
 /*   By: tigpetro <tigpetro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 18:14:22 by tigpetro          #+#    #+#             */
-/*   Updated: 2024/04/30 20:06:10 by tigpetro         ###   ########.fr       */
+/*   Updated: 2025/01/15 19:01:59 by tigpetro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
-
-void	ft_destroy(char **map)
-{
-	char	**tmp;
-
-	tmp = map;
-	while (*tmp)
-	{
-		free(*tmp);
-		tmp++;
-	}
-	free(map);
-}
 
 int	ft_counter_check(t_game *game)
 {
@@ -49,7 +36,7 @@ int	ft_counter_check(t_game *game)
 	}
 	if (exit_count > 1)
 		return (0);
-	return (exit_count + game->head_count);
+	return (game->head_count);
 }
 
 t_point	*map_size(char **map)
@@ -106,4 +93,28 @@ int	_check_player(char **map, char c)
 		i++;
 	}
 	return (flag == 1);
+}
+
+int	_check_map_design(char **map)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	i = 0;
+	while (map[i])
+	{
+		j = -1;
+		len = ft_strlen(map[i]) - 1;
+		while (j++ < (int)len - 1)
+			if (((i && map[i][len]) && (map[i][0] != '1' || map[i][len
+				- 1] != '1' || (j && j < (int)len - 2
+				&& (map[i][j] != 'C' && map[i][j] != 'P'
+				&& map[i][j] != '0' && map[i][j] != '1'
+				&& map[i][j] != 'G' && map[i][j] != 'E'))))
+				|| ((!i || !map[i][len]) && map[i][j] != '1'))
+				return (0);
+		i++;
+	}
+	return (1);
 }
